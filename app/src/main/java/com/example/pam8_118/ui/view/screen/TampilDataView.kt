@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -114,5 +115,20 @@ fun DataMahasiswaView(
                 )
             }
         }
+        Spacer(modifier = Modifier.size(32.dp))
+
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Button(onClick = { onBackButtonClicked() }, modifier = Modifier.weight(1f)) {
+                Text(text = "Kembali")
+            }
+            Button(onClick = { onResetButtonClicked() }, modifier = Modifier.weight(1f)) {
+                Text(text = "Reset")
+            }
+        }
     }
 }
+
