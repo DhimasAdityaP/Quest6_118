@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.pam8_118.navigation.MahasiswaApp
+
 import com.example.pam8_118.ui.theme.PAM8_118Theme
 
 class MainActivity : ComponentActivity() {
@@ -21,10 +21,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             PAM8_118Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MahasiswaApp(
-
-                        modifier = Modifier.padding(innerPadding)
-                    )
                 }
             }
         }
