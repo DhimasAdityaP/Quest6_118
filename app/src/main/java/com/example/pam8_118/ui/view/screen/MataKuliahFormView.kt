@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -112,9 +113,49 @@ fun MataKuliahFormView(
                 label = { Text(text = "Kelas") },
                 singleLine = true
             )
+            Spacer(modifier = Modifier.size(16.dp))
+
+            // Mata Kuliah Radio Button
+            Text(text = "Pilih Mata Kuliah:")
+            Column {
+                mataKuliahOptions.forEach { option ->
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        androidx.compose.material3.RadioButton(
+                            selected = mataKuliah == option,
+                            onClick = { mataKuliah = option }
+                        )
+                        Text(
+                            text = option,
+                            modifier = Modifier.padding(start = 8.dp)
+                        )
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.size(16.dp))
+
+            // Submit Button
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Button(onClick = {
+                    onSubmitButtonClicked(
+                        mapOf(
+                            "kelas" to kelass,
+                            "mataKuliah" to mataKuliah
+                        )
+                    )
+                }) {
+                    Text(text = "Submit")
+                }
+            }
         }
     }
 }
+
 
 
 
