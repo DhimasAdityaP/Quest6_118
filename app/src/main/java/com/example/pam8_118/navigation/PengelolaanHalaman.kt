@@ -51,6 +51,29 @@ fun MahasiswaApp(
                 onBackButtonClicked = { navController.popBackStack() }
             )
         }
+
+        composable(route = Halaman.Matakuliah.name) {
+            MataKuliahFormView(
+                mahasiswaData = listOf(mahasiswaState.nim, mahasiswaState.nama, mahasiswaState.email), // Pass actual data
+                onSubmitButtonClicked = { data ->
+                    // Saving MataKuliah data through ViewModel
+                    viewModel.saveMataKuliahData(
+                        MataKuliah(kelas = data["kelas"] ?: "", mataKuliah = data["mataKuliah"] ?: "")
+                    )
+                    navController.navigate(Halaman.Tampil.name) // Navigate to Tampil screen
+                },
+            )
+        }
+
+        composable(route = Halaman.Tampil.name) {
+            DataMahasiswaView(
+                mahasiswaData = listOf(mahasiswaState.nim, mahasiswaState.nama, mahasiswaState.email),
+                mataKuliah = mataKuliahState.mataKuliah,
+                kelas = mataKuliahState.kelas,
+                onBackButtonClicked = { navController.popBackStack() }, // Navigate back to Matakuliah screen
+                onResetButtonClicked = { navController.navigate(Halaman.Splash.name) } // Navigate to Splash screen
+            )
+        }
     }
 }
 
